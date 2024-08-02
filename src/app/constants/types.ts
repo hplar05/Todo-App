@@ -10,3 +10,15 @@ export interface Todo {
     removeTodo: (id: number) => void;
     toggleTodo: (id: number) => void,
   }
+
+  export interface todoItemInterfae {
+    todo: string
+  }
+
+  export interface TodoItemInterface {
+    todo: {
+      id: number;
+      text: string;
+      completed: boolean;
+    };
+  }
