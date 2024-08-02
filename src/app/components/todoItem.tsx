@@ -28,6 +28,12 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
     ToastAndroid.show("Sucessfully Edited!", ToastAndroid.SHORT);
   };
 
+  const handleRemoveTodo = () => {
+    removeTodo(todo.id);
+    setOpenRemoveModal(false);
+    ToastAndroid.show("Sucessfully Remove!", ToastAndroid.SHORT);
+  };
+
   return (
     <View style={styles.container}>
       <Checkbox
@@ -113,10 +119,7 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
                     backgroundColor: "rgba(0,0,0,0.1)",
                   },
                 ]}
-                onPress={() => {
-                  removeTodo(todo.id);
-                  setOpenRemoveModal(false);
-                }}
+                onPress={handleRemoveTodo}
               >
                 <Text style={[styles.buttonText, { color: "black" }]}>
                   Remove
