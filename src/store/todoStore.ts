@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { TodoStore } from "./types";
+import { TodoStore } from "../app/constants/types";
 
 
 const useTodoStore = create<TodoStore>(set => ({
