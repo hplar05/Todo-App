@@ -1,12 +1,32 @@
-import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  TouchableOpacity,
+  TextInput,
+  ToastAndroid,
+} from "react-native";
 import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
 import useTodoStore from "../../store/todoStore";
 import { TodoItemInterface } from "../constants/types";
 
 const TodoItem = ({ todo }: TodoItemInterface) => {
-  const { removeTodo, toggleTodo } = useTodoStore();
-  const [openModal, setOpenModal] = useState(false);
+  const { editTodo, removeTodo, toggleTodo } = useTodoStore();
+  const [openRemoveModal, setOpenRemoveModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [newText, setNewText] = useState(todo.text);
+
+  const handleEditTodo = () => {
+    if (!newText) {
+      ToastAndroid.show("Invalid, input text first!", ToastAndroid.SHORT);
+      return;
+    }
+    editTodo(todo.id, newText);
+    setOpenEditModal(false);
+    ToastAndroid.show("Sucessfully Edited!", ToastAndroid.SHORT);
+  };
 
   return (
     <View style={styles.container}>
@@ -18,7 +38,60 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
         {todo.text}
       </Text>
       <Modal
-        visible={openModal}
+        visible={openEditModal}
+        statusBarTranslucent={true}
+        transparent={true}
+        animationType="slide"
+      >
+        <View style={styles.content}>
+          <View style={styles.card}>
+            <Text style={styles.title}>Edit Todo!</Text>
+            <TextInput
+              placeholder="Enter new todo text"
+              value={newText}
+              onChangeText={setNewText}
+              style={styles.input}
+            />
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={[
+                  styles.button,
+                  {
+                    width: "50%",
+                    height: 50,
+                    marginTop: 24,
+                    backgroundColor: "rgba(0,0,0,0.1)",
+                  },
+                ]}
+                onPress={handleEditTodo}
+              >
+                <Text style={[styles.buttonText, { color: "black" }]}>
+                  Edit
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.button,
+                  {
+                    width: "50%",
+                    height: 50,
+                    marginTop: 24,
+                    marginLeft: 10,
+                    backgroundColor: "rgba(0,0,0,0.1)",
+                  },
+                ]}
+                onPress={() => setOpenEditModal(false)}
+              >
+                <Text style={[styles.buttonText, { color: "black" }]}>
+                  Cancel
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        visible={openRemoveModal}
         statusBarTranslucent={true}
         transparent={true}
         animationType="slide"
@@ -27,7 +100,7 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
           <View style={styles.card}>
             <Text style={styles.title}>Remove Todo!</Text>
             <Text style={styles.desc}>
-              Are you sure you want remove the selected todo?
+              Are you sure you want to remove the selected todo?
             </Text>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
@@ -40,7 +113,10 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
                     backgroundColor: "rgba(0,0,0,0.1)",
                   },
                 ]}
-                onPress={() => removeTodo(todo.id)}
+                onPress={() => {
+                  removeTodo(todo.id);
+                  setOpenRemoveModal(false);
+                }}
               >
                 <Text style={[styles.buttonText, { color: "black" }]}>
                   Remove
@@ -57,7 +133,7 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
                     backgroundColor: "rgba(0,0,0,0.1)",
                   },
                 ]}
-                onPress={() => setOpenModal(false)}
+                onPress={() => setOpenRemoveModal(false)}
               >
                 <Text style={[styles.buttonText, { color: "black" }]}>
                   Cancel
@@ -67,10 +143,10 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
           </View>
         </View>
       </Modal>
-      <Text style={styles.edit} onPress={() => removeTodo(todo.id)}>
+      <Text style={styles.edit} onPress={() => setOpenEditModal(true)}>
         Edit
       </Text>
-      <Text style={styles.remove} onPress={() => setOpenModal(true)}>
+      <Text style={styles.remove} onPress={() => setOpenRemoveModal(true)}>
         Remove
       </Text>
     </View>
@@ -141,6 +217,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    padding: 10,
+    marginTop: 10,
   },
 });
 
