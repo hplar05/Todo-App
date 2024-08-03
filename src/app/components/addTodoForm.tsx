@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import useTodoStore from "../../store/todoStore";
+import { AddTodoFormStyles } from "../styles";
 
 const AddTodoForm = () => {
   const [text, setText] = useState("");
@@ -26,58 +27,24 @@ const AddTodoForm = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Your Todo Lists 💡 </Text>
-      <View style={styles.inputContainer}>
+    <View style={AddTodoFormStyles.container}>
+      <Text style={AddTodoFormStyles.title}>Your Todo Lists 💡 </Text>
+      <View style={AddTodoFormStyles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={AddTodoFormStyles.input}
           value={text}
           onChangeText={setText}
           placeholder="Enter todo"
         />
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Add Todo</Text>
+        <TouchableOpacity
+          style={AddTodoFormStyles.button}
+          onPress={handleSubmit}
+        >
+          <Text style={AddTodoFormStyles.buttonText}>Add Todo</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-    fontWeight: "bold",
-    color: "#343a40",
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  input: {
-    flex: 1,
-    height: 40,
-    borderColor: "#ced4da",
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingLeft: 10,
-    marginRight: 10,
-    backgroundColor: "#ffffff",
-  },
-  button: {
-    backgroundColor: "green",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 4,
-  },
-  buttonText: {
-    color: "#ffffff",
-    fontWeight: "bold",
-  },
-});
 
 export default AddTodoForm;

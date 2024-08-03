@@ -11,6 +11,7 @@ import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
 import useTodoStore from "../../store/todoStore";
 import { TodoItemInterface } from "../constants/types";
+import { TodoItemStyles } from "../styles";
 
 const TodoItem = ({ todo }: TodoItemInterface) => {
   const { editTodo, removeTodo, toggleTodo } = useTodoStore();
@@ -35,12 +36,17 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={TodoItemStyles.container}>
       <Checkbox
         value={todo.completed}
         onValueChange={() => toggleTodo(todo.id)}
       />
-      <Text style={[styles.text, todo.completed && styles.completed]}>
+      <Text
+        style={[
+          TodoItemStyles.text,
+          todo.completed && TodoItemStyles.completed,
+        ]}
+      >
         {todo.text}
       </Text>
       <Modal
@@ -49,19 +55,19 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
         transparent={true}
         animationType="slide"
       >
-        <View style={styles.content}>
-          <View style={styles.card}>
-            <Text style={styles.title}>Edit Todo!</Text>
+        <View style={TodoItemStyles.content}>
+          <View style={TodoItemStyles.card}>
+            <Text style={TodoItemStyles.title}>Edit Todo!</Text>
             <TextInput
               placeholder="Enter new todo text"
               value={newText}
               onChangeText={setNewText}
-              style={styles.input}
+              style={TodoItemStyles.input}
             />
-            <View style={styles.buttonContainer}>
+            <View style={TodoItemStyles.buttonContainer}>
               <TouchableOpacity
                 style={[
-                  styles.button,
+                  TodoItemStyles.button,
                   {
                     width: "50%",
                     height: 50,
@@ -71,13 +77,13 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
                 ]}
                 onPress={handleEditTodo}
               >
-                <Text style={[styles.buttonText, { color: "black" }]}>
+                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
                   Edit
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[
-                  styles.button,
+                  TodoItemStyles.button,
                   {
                     width: "50%",
                     height: 50,
@@ -88,7 +94,7 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
                 ]}
                 onPress={() => setOpenEditModal(false)}
               >
-                <Text style={[styles.buttonText, { color: "black" }]}>
+                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
                   Cancel
                 </Text>
               </TouchableOpacity>
@@ -102,16 +108,16 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
         transparent={true}
         animationType="slide"
       >
-        <View style={styles.content}>
-          <View style={styles.card}>
-            <Text style={styles.title}>Remove Todo!</Text>
-            <Text style={styles.desc}>
+        <View style={TodoItemStyles.content}>
+          <View style={TodoItemStyles.card}>
+            <Text style={TodoItemStyles.title}>Remove Todo!</Text>
+            <Text style={TodoItemStyles.desc}>
               Are you sure you want to remove the selected todo?
             </Text>
-            <View style={styles.buttonContainer}>
+            <View style={TodoItemStyles.buttonContainer}>
               <TouchableOpacity
                 style={[
-                  styles.button,
+                  TodoItemStyles.button,
                   {
                     width: "50%",
                     height: 50,
@@ -121,13 +127,13 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
                 ]}
                 onPress={handleRemoveTodo}
               >
-                <Text style={[styles.buttonText, { color: "black" }]}>
+                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
                   Remove
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[
-                  styles.button,
+                  TodoItemStyles.button,
                   {
                     width: "50%",
                     height: 50,
@@ -138,7 +144,7 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
                 ]}
                 onPress={() => setOpenRemoveModal(false)}
               >
-                <Text style={[styles.buttonText, { color: "black" }]}>
+                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
                   Cancel
                 </Text>
               </TouchableOpacity>
@@ -146,88 +152,17 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
           </View>
         </View>
       </Modal>
-      <Text style={styles.edit} onPress={() => setOpenEditModal(true)}>
+      <Text style={TodoItemStyles.edit} onPress={() => setOpenEditModal(true)}>
         Edit
       </Text>
-      <Text style={styles.remove} onPress={() => setOpenRemoveModal(true)}>
+      <Text
+        style={TodoItemStyles.remove}
+        onPress={() => setOpenRemoveModal(true)}
+      >
         Remove
       </Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
-    alignItems: "center",
-  },
-  completed: {
-    textDecorationLine: "line-through",
-  },
-  text: {
-    marginLeft: 10,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    color: "black",
-  },
-  buttonText: {
-    fontSize: 16,
-    color: "black",
-  },
-  edit: {
-    marginLeft: 10,
-    color: "blue",
-  },
-  remove: {
-    marginLeft: 10,
-    color: "red",
-  },
-  desc: {
-    fontSize: 16,
-    lineHeight: 24,
-    opacity: 0.7,
-  },
-  title: {
-    fontWeight: "600",
-    fontSize: 18,
-    marginBottom: 12,
-  },
-  card: {
-    width: "90%",
-    padding: 20,
-    backgroundColor: "white",
-    borderRadius: 8,
-  },
-  content: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  button: {
-    width: "90%",
-    backgroundColor: "black",
-    justifyContent: "center",
-    alignItems: "center",
-    height: 56,
-    borderRadius: 8,
-  },
-  buttonContainer: {
-    padding: 10,
-    justifyContent: "space-between",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    padding: 10,
-    marginTop: 10,
-  },
-});
 
 export default TodoItem;
