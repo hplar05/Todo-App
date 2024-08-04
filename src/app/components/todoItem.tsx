@@ -152,13 +152,13 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
         </View>
       </Modal>
       <Text style={TodoItemStyles.edit} onPress={() => setOpenEditModal(true)}>
-        Edit
+        🖊️
       </Text>
       <Text
         style={TodoItemStyles.remove}
         onPress={() => setOpenRemoveModal(true)}
       >
-        Remove
+        🗑️
       </Text>
     </View>
   );

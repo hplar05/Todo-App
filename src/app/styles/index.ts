@@ -16,7 +16,7 @@ import { StyleSheet } from 'react-native'
     container: {
       flexDirection: "row",
       justifyContent: "space-between",
-      paddingHorizontal: 30,
+      paddingHorizontal: 20,
       padding: 10,
     },
     completed: {
@@ -28,17 +28,20 @@ import { StyleSheet } from 'react-native'
       alignItems: "center",
       justifyContent: "center",
       color: "black",
+      fontSize: 16
     },
     buttonText: {
       fontSize: 16,
       color: "black",
     },
     edit: {
-      marginLeft: 10,
+      fontSize: 20,
+      marginLeft: 20,
       color: "blue",
     },
     remove: {
-      marginLeft: 10,
+      fontSize: 20,
+      marginLeft: 20,
       color: "red",
     },
     desc: {
