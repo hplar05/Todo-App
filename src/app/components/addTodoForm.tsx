@@ -3,8 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
-  StyleSheet,
   TouchableOpacity,
   ToastAndroid,
 } from "react-native";

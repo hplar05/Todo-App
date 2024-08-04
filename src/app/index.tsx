@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import AddTodoForm from "./components/addTodoForm";
 import TodoList from "./components/todoList";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Footer from "./components/footer";
 
 export default function TodoPage() {
   return (
@@ -9,6 +10,7 @@ export default function TodoPage() {
       <View style={styles.main}>
         <AddTodoForm />
         <TodoList />
+        <Footer />
       </View>
     </SafeAreaView>
   );

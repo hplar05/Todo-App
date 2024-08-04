@@ -1,10 +1,14 @@
 import { StyleSheet } from 'react-native'
 
-export const TodoListStyles = StyleSheet.create({
+  export const TodoListStyles = StyleSheet.create({
     container: {
       flex: 1,
-      padding: 10,
+      width: 380,
       alignItems: "center",
+    },
+    Scrollcontainer: {
+      flex: 1,
+      width: "100%",
     },
   });
 
@@ -12,8 +16,8 @@ export const TodoListStyles = StyleSheet.create({
     container: {
       flexDirection: "row",
       justifyContent: "space-between",
+      paddingHorizontal: 30,
       padding: 10,
-      alignItems: "center",
     },
     completed: {
       textDecorationLine: "line-through",
