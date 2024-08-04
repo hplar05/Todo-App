@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
-import AddTodoForm from "./components/addTodoForm";
-import TodoList from "./components/todoList";
+import AddTodoForm from "../components/addTodoForm";
+import TodoList from "../components/todoList";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Footer from "./components/footer";
+import Footer from "../components/footer";
 
-export default function TodoPage() {
+const TodoPage = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.main}>
@@ -14,7 +14,7 @@ export default function TodoPage() {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   main: {
-    flex: 1,
     alignItems: "center",
   },
   title: {
@@ -30,3 +29,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
+export default TodoPage;

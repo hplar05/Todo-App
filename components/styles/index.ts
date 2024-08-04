@@ -3,8 +3,13 @@ import { StyleSheet } from 'react-native'
   export const TodoListStyles = StyleSheet.create({
     container: {
       flex: 1,
-      width: 380,
+      width: 350,
       alignItems: "center",
+      shadowColor: 'black',
+      backgroundColor: 'white',
+      borderRadius: 10,
+      marginBottom: 10
+    
     },
     Scrollcontainer: {
       flex: 1,
@@ -18,9 +23,13 @@ import { StyleSheet } from 'react-native'
       justifyContent: "space-between",
       paddingHorizontal: 20,
       padding: 10,
+    
     },
     completed: {
       textDecorationLine: "line-through",
+      fontStyle: "italic",
+      color: "red"
+
     },
     text: {
       marginLeft: 10,
@@ -91,6 +100,7 @@ import { StyleSheet } from 'react-native'
   
   export const AddTodoFormStyles = StyleSheet.create({
     container: {
+      paddingTop: 0,
       padding: 20,
       alignItems: "center",
     },

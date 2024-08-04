@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persist, StateStorage } from 'zustand/middleware';
-import { TodoStore } from "../app/constants/types";
+import { todoStoreInterface } from "../types/types";
 
 //using persist and statestorage of zustand to store in Async Local Storage <3
-const useTodoStore = create<TodoStore>()(
+const useTodoStore = create<todoStoreInterface>()(
   persist(
     (set) => ({
       todos: [],

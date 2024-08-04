@@ -7,8 +7,8 @@ import {
   ToastAndroid,
 } from "react-native";
 import { useState } from "react";
-import useTodoStore from "../../store/todoStore";
-import { AddTodoFormStyles } from "../styles";
+import useTodoStore from "../store/todoStore";
+import { AddTodoFormStyles } from "./styles";
 
 const AddTodoForm = () => {
   const [text, setText] = useState("");
@@ -26,7 +26,6 @@ const AddTodoForm = () => {
 
   return (
     <View style={AddTodoFormStyles.container}>
-      <Text style={AddTodoFormStyles.title}>Your Todo Lists 💡 </Text>
       <View style={AddTodoFormStyles.inputContainer}>
         <TextInput
           style={AddTodoFormStyles.input}

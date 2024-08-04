@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
-import useTodoStore from "../../store/todoStore";
-import { TodoItemInterface } from "../constants/types";
-import { TodoItemStyles } from "../styles";
+import useTodoStore from "../store/todoStore";
+import { TodoItemInterface } from "../types/types";
+import { TodoItemStyles } from "./styles";
 
 const TodoItem = ({ todo }: TodoItemInterface) => {
   const { editTodo, removeTodo, toggleTodo } = useTodoStore();

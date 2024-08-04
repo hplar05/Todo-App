@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
-export default function Footer() {
+function Footer() {
   return (
     <View style={style.footerContainer}>
-      <Text style={style.textStyle}>Technical Exam at FitSenpai 💪🏼🏋🏽</Text>
+      <Text style={style.textStyle}>All rights reserved © My Todo List.</Text>
     </View>
   );
 }
@@ -20,3 +20,5 @@ const style = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
+export default Footer;

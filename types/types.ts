@@ -4,7 +4,7 @@ export interface Todo {
     completed: boolean;
   }
   
-  export interface TodoStore {
+  export interface todoStoreInterface {
     todos: Todo[];
     addTodo: (text: string) => void;
     removeTodo: (id: number) => void;
