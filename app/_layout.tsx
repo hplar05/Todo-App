@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { AppStyles } from "../components/styles";
+import { AppStyles } from "../components/styles/TodoStyles";
 import TodoPage from ".";
 import { Stack } from "expo-router";
 
@@ -10,7 +10,7 @@ const RootLayout = () => {
         name="index"
         options={{
           headerTitleAlign: "center",
-          headerTitle: "My Todo Lists 💡",
+          headerTitle: "My To-do Lists 📒",
           headerShown: true,
         }}
       />

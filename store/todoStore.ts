@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persist, StateStorage } from 'zustand/middleware';
-import { todoStoreInterface } from "../types/types";
+import { todoStoreInterface, Todo } from "../types/types";
 
-//using persist and statestorage of zustand to store in Async Local Storage <3
+// using persist and statestorage of zustand to store in Async Local Storage 
 const useTodoStore = create<todoStoreInterface>()(
   persist(
     (set) => ({
@@ -12,6 +12,9 @@ const useTodoStore = create<todoStoreInterface>()(
       removeTodo: (id) => set((state) => ({ todos: state.todos.filter(t => t.id !== id) })),
       editTodo: (id, newTodo) => set((state) => ({
         todos: state.todos.map((t) => t.id === id ? { ...t, text: newTodo } : t),
+      })),
+      removeCompletedTodos: () => set((state) => ({
+        todos: state.todos.filter(t => !t.completed)
       })),
       toggleTodo: (id) => set((state) => ({ todos: state.todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t) }))
     }),

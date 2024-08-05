@@ -133,7 +133,9 @@ import { StyleSheet } from 'react-native'
     buttonText: {
       color: "#ffffff",
       fontWeight: "bold",
+      fontSize: 18
     },
+   
   });
 
  export const AppStyles = StyleSheet.create({
@@ -144,3 +146,23 @@ import { StyleSheet } from 'react-native'
       justifyContent: "center",
     },
   });
+
+ export const FooterStyles = StyleSheet.create({
+  footerContainer: {
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteCompletedButton: {
+    backgroundColor: '#ff6347',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteCompletedbuttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  });
+  

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import useTodoStore from "../store/todoStore";
-import { AddTodoFormStyles } from "./styles";
+import { AddTodoFormStyles } from "./styles/TodoStyles";
 
 const AddTodoForm = () => {
   const [text, setText] = useState("");
@@ -31,13 +31,13 @@ const AddTodoForm = () => {
           style={AddTodoFormStyles.input}
           value={text}
           onChangeText={setText}
-          placeholder="Enter todo"
+          placeholder="Enter a new to-do"
         />
         <TouchableOpacity
           style={AddTodoFormStyles.button}
           onPress={handleSubmit}
         >
-          <Text style={AddTodoFormStyles.buttonText}>Add Todo</Text>
+          <Text style={AddTodoFormStyles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
     </View>

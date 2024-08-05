@@ -10,13 +10,31 @@ import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
 import useTodoStore from "../store/todoStore";
 import { TodoItemInterface } from "../types/types";
-import { TodoItemStyles } from "./styles";
+import { TodoItemStyles } from "./styles/TodoStyles";
+import EditTodoModal from "./EditTodoModal";
+import RemoveTodoModal from "./RemoveTodoModal";
 
 const TodoItem = ({ todo }: TodoItemInterface) => {
   const { editTodo, removeTodo, toggleTodo } = useTodoStore();
   const [openRemoveModal, setOpenRemoveModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [newText, setNewText] = useState(todo.text);
+
+  const handleCompletedTodo = () => {
+    toggleTodo(todo.id);
+
+    if (todo.completed === false) {
+      ToastAndroid.show("Task Completed!", ToastAndroid.SHORT);
+    } else {
+      ToastAndroid.show("Task Uncompleted!", ToastAndroid.SHORT);
+    }
+  };
+
+  const handleRemoveTodo = () => {
+    removeTodo(todo.id);
+    setOpenRemoveModal(false);
+    ToastAndroid.show("Successfully Removed!", ToastAndroid.SHORT);
+  };
 
   const handleEditTodo = () => {
     if (!newText) {
@@ -25,21 +43,12 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
     }
     editTodo(todo.id, newText);
     setOpenEditModal(false);
-    ToastAndroid.show("Sucessfully Edited!", ToastAndroid.SHORT);
-  };
-
-  const handleRemoveTodo = () => {
-    removeTodo(todo.id);
-    setOpenRemoveModal(false);
-    ToastAndroid.show("Sucessfully Remove!", ToastAndroid.SHORT);
+    ToastAndroid.show("Successfully Edited!", ToastAndroid.SHORT);
   };
 
   return (
     <View style={TodoItemStyles.container}>
-      <Checkbox
-        value={todo.completed}
-        onValueChange={() => toggleTodo(todo.id)}
-      />
+      <Checkbox value={todo.completed} onValueChange={handleCompletedTodo} />
       <Text
         style={[
           TodoItemStyles.text,
@@ -48,109 +57,18 @@ const TodoItem = ({ todo }: TodoItemInterface) => {
       >
         {todo.text}
       </Text>
-      <Modal
+      <EditTodoModal
         visible={openEditModal}
-        statusBarTranslucent={true}
-        transparent={true}
-        animationType="slide"
-      >
-        <View style={TodoItemStyles.content}>
-          <View style={TodoItemStyles.card}>
-            <Text style={TodoItemStyles.title}>Edit Todo!</Text>
-            <TextInput
-              placeholder="Enter new todo text"
-              value={newText}
-              onChangeText={setNewText}
-              style={TodoItemStyles.input}
-            />
-            <View style={TodoItemStyles.buttonContainer}>
-              <TouchableOpacity
-                style={[
-                  TodoItemStyles.button,
-                  {
-                    width: "50%",
-                    height: 50,
-                    marginTop: 24,
-                    backgroundColor: "rgba(0,0,0,0.1)",
-                  },
-                ]}
-                onPress={handleEditTodo}
-              >
-                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
-                  Edit
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  TodoItemStyles.button,
-                  {
-                    width: "50%",
-                    height: 50,
-                    marginTop: 24,
-                    marginLeft: 10,
-                    backgroundColor: "rgba(0,0,0,0.1)",
-                  },
-                ]}
-                onPress={() => setOpenEditModal(false)}
-              >
-                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
-                  Cancel
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <Modal
+        onClose={() => setOpenEditModal(false)}
+        onSave={handleEditTodo}
+        newText={newText}
+        setNewText={setNewText}
+      />
+      <RemoveTodoModal
         visible={openRemoveModal}
-        statusBarTranslucent={true}
-        transparent={true}
-        animationType="slide"
-      >
-        <View style={TodoItemStyles.content}>
-          <View style={TodoItemStyles.card}>
-            <Text style={TodoItemStyles.title}>Remove Todo!</Text>
-            <Text style={TodoItemStyles.desc}>
-              Are you sure you want to remove the selected todo?
-            </Text>
-            <View style={TodoItemStyles.buttonContainer}>
-              <TouchableOpacity
-                style={[
-                  TodoItemStyles.button,
-                  {
-                    width: "50%",
-                    height: 50,
-                    marginTop: 24,
-                    backgroundColor: "rgba(0,0,0,0.1)",
-                  },
-                ]}
-                onPress={handleRemoveTodo}
-              >
-                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
-                  Remove
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  TodoItemStyles.button,
-                  {
-                    width: "50%",
-                    height: 50,
-                    marginTop: 24,
-                    marginLeft: 10,
-                    backgroundColor: "rgba(0,0,0,0.1)",
-                  },
-                ]}
-                onPress={() => setOpenRemoveModal(false)}
-              >
-                <Text style={[TodoItemStyles.buttonText, { color: "black" }]}>
-                  Cancel
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+        onClose={() => setOpenRemoveModal(false)}
+        onRemove={handleRemoveTodo}
+      />
       <Text style={TodoItemStyles.edit} onPress={() => setOpenEditModal(true)}>
         🖊️
       </Text>
