@@ -149,7 +149,7 @@ import { StyleSheet } from 'react-native'
 
  export const FooterStyles = StyleSheet.create({
   footerContainer: {
-    padding: 10,
+    padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -19,10 +19,13 @@ function Footer() {
     const hasCompletedTasks = todos.some((todo) => todo.completed);
 
     if (!hasCompletedTasks) {
-      ToastAndroid.show("Select Completed Task First!", ToastAndroid.SHORT);
+      ToastAndroid.show("Select Completed Todo First!", ToastAndroid.SHORT);
     } else {
       removeCompletedTodos();
-      ToastAndroid.show("Task Completed!", ToastAndroid.SHORT);
+      ToastAndroid.show(
+        "Sucessfully Remove Completed Todo!",
+        ToastAndroid.SHORT,
+      );
     }
   };
 
@@ -33,7 +36,7 @@ function Footer() {
         onPress={handleCompletedTask}
       >
         <Text style={FooterStyles.deleteCompletedbuttonText}>
-          Delete all Completed Tasks 🗑️
+          Delete Completed Todo 🗑️
         </Text>
       </TouchableOpacity>
     </View>
