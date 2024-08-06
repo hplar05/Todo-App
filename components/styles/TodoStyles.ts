@@ -23,7 +23,6 @@ import { StyleSheet } from 'react-native'
       justifyContent: "space-between",
       paddingHorizontal: 20,
       padding: 10,
-    
     },
     completed: {
       textDecorationLine: "line-through",
