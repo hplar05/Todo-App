@@ -165,3 +165,16 @@ import { StyleSheet } from 'react-native'
   },
   });
   
+ export const IndexStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+    },
+    main: {
+      alignItems: "center",
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: "bold",
+    },
+  });
