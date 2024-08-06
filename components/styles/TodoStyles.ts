@@ -178,3 +178,18 @@ import { StyleSheet } from 'react-native'
       fontWeight: "bold",
     },
   });
+
+  export const sortingStyle = StyleSheet.create({
+    container: {
+      width: 350,
+      height: 40,
+      marginBottom: 15,
+    },
+    buttonContainer: {
+      alignItems: "flex-end",
+      marginBottom: 10,
+    },
+    buttonStyle: {
+      width: "20%",
+    },
+  });

@@ -3,7 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persist, StateStorage } from 'zustand/middleware';
 import { todoStoreInterface, Todo } from "../types/types";
 
-// using persist and statestorage of zustand to store in Async Local Storage 
+
+// Using persist and statestorage of Zustand to store in Async Local Storage 
 const useTodoStore = create<todoStoreInterface>()(
   persist(
     (set) => ({
@@ -16,7 +17,13 @@ const useTodoStore = create<todoStoreInterface>()(
       removeCompletedTodos: () => set((state) => ({
         todos: state.todos.filter(t => !t.completed)
       })),
-      toggleTodo: (id) => set((state) => ({ todos: state.todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t) }))
+      toggleTodo: (id) => set((state) => ({ todos: state.todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t) })),
+      sortByDate: () => set((state) => ({
+        todos: [...state.todos].sort((a, b) => a.id - b.id)
+      })),
+      sortByCompleted: () => set((state) => ({
+        todos: [...state.todos].sort((a, b) => Number(a.completed) - Number(b.completed))
+      })),
     }),
     {
       name: 'todo-storage',

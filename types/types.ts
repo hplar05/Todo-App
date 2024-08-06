@@ -1,7 +1,7 @@
 export interface Todo {
-  id: number;
   text: string;
   completed: boolean;
+  id: number;
 }
 
 export interface todoStoreInterface {
@@ -9,19 +9,22 @@ export interface todoStoreInterface {
   addTodo: (text: string) => void;
   removeTodo: (id: number) => void;
   editTodo: (id: number, newTodo: string) => void;
-  toggleTodo: (id: number) => void;
   removeCompletedTodos: () => void;
+  toggleTodo: (id: number) => void;
+  sortByDate: () => void;
+  sortByCompleted: () => void;
+}
+
+export interface todoItemInterface {
+  todo: string;
+}
+
+export interface TodoItemInterface {
+  todo: {
+    id: number;
+    text: string;
+    completed: boolean;
+  };
 }
 
 
-  export interface todoItemInterfae {
-    todo: string
-  }
-
-  export interface TodoItemInterface {
-    todo: {
-      id: number;
-      text: string;
-      completed: boolean;
-    };
-  }
