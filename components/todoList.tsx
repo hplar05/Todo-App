@@ -8,9 +8,9 @@ const TodoList = () => {
   const todos = useTodoStore((state) => state.todos);
   return (
     <ScrollView style={TodoListStyles.Scrollcontainer}>
-      {todos.map((todo) => (
-        <View style={TodoListStyles.container}>
-          <TodoItem key={todo.id} todo={todo} />
+      {todos.map((todo, todoIndex) => (
+        <View key={todoIndex} style={TodoListStyles.container}>
+          <TodoItem todo={todo} />
         </View>
       ))}
     </ScrollView>
