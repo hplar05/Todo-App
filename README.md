@@ -4,6 +4,9 @@
 
 This To-Do List app helps users keep track of their tasks efficiently. It provides a simple and intuitive interface to add, edit, and remove tasks. The app leverages modern state management and local storage techniques to ensure a smooth user experience.
 
+![image](https://i.postimg.cc/VvH7rMQM/appimages.jpg)
+
+
 ## Setup Instructions
 
 1. **Clone the repository:**
@@ -14,17 +17,12 @@ This To-Do List app helps users keep track of their tasks efficiently. It provid
 
 2. **Install dependencies:**
     ```bash
-    npm install
+    npm i / npm install
     ```
 
 3. **Run the app:**
     ```bash
     npx expo start -c
-    ```
-
-4. **Build the app (if needed):**
-    ```bash
-    npm run build
     ```
 
 ## List of Implemented Features
@@ -39,10 +37,7 @@ This To-Do List app helps users keep track of their tasks efficiently. It provid
   - Employs ToastAndroid to provide instant feedback for add, input, and remove actions.
 
 - **Task Modification:** 
-  - Modal interface for editing and removing tasks.
-
-- **Splash Screen:** 
-  - Includes a splash screen for a better user experience during app startup.
+  - Modal interface for editing, removing tasks, and removing completed tasks.
 
 ## Known Issues or Limitations
 
@@ -54,5 +49,3 @@ This To-Do List app helps users keep track of their tasks efficiently. It provid
 
 - **Limited Offline Support:**
   - While the app works offline due to local storage, there is no mechanism to sync data when the user goes back online.
-
-Feel free to contribute to the project by submitting issues or pull requests.
